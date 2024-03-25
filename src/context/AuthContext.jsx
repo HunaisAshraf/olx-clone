@@ -1,0 +1,71 @@
+import { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { auth, db } from "../utils/FirebaseConfig";
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+
+  const signUp = async (userName, email, phone, password) => {
+    try {
+      let userDetails = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(userDetails.user, {
+        displayName: userName,
+      });
+      await addDoc(collection(db, "users"), {
+        id: userDetails.user.uid,
+        userName,
+        email,
+        phone,
+      });
+
+      return { success: true };
+    } catch (error) {
+      console.log(error);
+      return { success: false };
+    }
+  };
+  const logIn = async (email, password) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      return { success: true };
+    } catch (error) {
+      console.log(error);
+      return { success: false };
+    }
+  };
+
+  const logOut = async () => {
+    await signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContext;
