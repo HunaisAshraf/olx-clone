@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { auth, db } from "../utils/FirebaseConfig";
+import { auth, db } from "../utils/FirebaseConfig.js";
 
 const AuthContext = createContext();
 
@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
       return { success: false };
     }
   };
+
   const logIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -50,6 +51,8 @@ export const AuthProvider = ({ children }) => {
   const logOut = async () => {
     await signOut(auth);
   };
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

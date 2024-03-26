@@ -50,7 +50,7 @@ const Header = () => {
             Login
           </Link>
         )}
-        <div className="h-10 w-32 sell flex justify-center items-center rounded-3xl">
+        <div onClick={()=>navigate("/sell")} className="h-10 w-32 sell flex justify-center items-center rounded-3xl">
           <div className=" cursor-pointer h-[82%] w-[86%] bg-white  rounded-3xl flex items-center justify-center gap-1">
             <TiPlus />
             <span className="font-bold">SELL</span>
