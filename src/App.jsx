@@ -14,7 +14,6 @@ import Sell from "./pages/Sell";
 import AddProduct from "./pages/AddProduct";
 import { ProductProvider } from "./context/ProductContext";
 import Home from "./pages/Home.jsx";
-// import ProductDetails from "./pages/ProductDetails.jsx";
 
 const ProductDetails = lazy(() => import("./pages/ProductDetails.jsx"));
 

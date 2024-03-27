@@ -5,8 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { products } = useContext(ProductContext);
-  const navigate = useNavigate();
-  console.log(products);
   return (
     <div className="min-h-[60vh] px-36 my-14">
       <h1 className="text-2xl pb-3"> Fresh Recommendation</h1>
