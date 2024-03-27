@@ -43,7 +43,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer mt-3 bg-green-950 text-white text-sm">
+      <div className="footer mt-3 bg-green-950 text-white text-sm text-center py-2">
         <p>Other Countries Pakistan - South Africa - Indonesia</p>
         <p>Free Classifieds in India. © 2006-2021 OLX</p>
       </div>

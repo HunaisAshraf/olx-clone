@@ -35,7 +35,7 @@ const ProductDetails = () => {
             <IoIosArrowForward className="absolute bg-white text-5xl text-black right-[650px] opacity-70 rounded-full" />
           </button>
         </div>
-        <div className="flex ">
+        <div className="flex gap-2 mt-2">
           {products[Number(id)]?.imageUrls?.map((prod, i) => (
             <img
               key={i}

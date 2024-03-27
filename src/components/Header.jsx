@@ -21,7 +21,7 @@ const Header = () => {
 
         <div className="hidden border-2 border-solid border-black sm:flex items-center bg-white px-2 py-3 rounded gap-2">
           <CiSearch size={25} />
-          <input type="text" placeholder="India" />
+          <input type="text" placeholder="India" className="outline-none"/>
           <FaChevronDown />
         </div>
 

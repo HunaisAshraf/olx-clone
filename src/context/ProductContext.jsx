@@ -1,12 +1,14 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { db, storage } from "../utils/FirebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import AuthContext from "./AuthContext.jsx";
 
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const { user } = useContext(AuthContext);
 
   const addProduct = async (title, description, price, images) => {
     try {
@@ -52,7 +54,7 @@ export const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     getProduct();
-  }, []);
+  }, [addProduct]);
   return (
     <ProductContext.Provider value={{ addProduct, products }}>
       {children}
