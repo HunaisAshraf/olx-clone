@@ -43,6 +43,7 @@ export const ProductProvider = ({ children }) => {
           id: product.id,
         };
       });
+
       setProducts(allProducts);
     } catch (error) {
       console.log(error);
